@@ -37,6 +37,7 @@ public class BoardManager : MonoBehaviour
         float startX = this.transform.position.x;
         float startY = this.transform.position.y;
 
+        int idx = -1;
         for (int x = 0; x < size.x; x++)
         {
             for (int y = 0; y < size.y; y++)
@@ -46,13 +47,22 @@ public class BoardManager : MonoBehaviour
                     new Vector3(startX+(offset.x*x), startY+(offset.y*y), 0),
                     Quaternion.identity
                     );
-                newCandy.name = $"Candy[{x}][{y}]";                
+                newCandy.name = $"Candy[{x}][{y}]";
+                do
+                {
+                    idx = GetRandomIndex();
+                } while ((x>0 && idx==candies[x-1,y].GetComponent<Candy>().id) ||
+                    (y>0 && idx == candies[x, y-1].GetComponent<Candy>().id));
+                
                 Candy tempCandy = newCandy.GetComponent<Candy>();
-                tempCandy.SetSprite(GetRandomSprite());
+                tempCandy.SetSprite(prefabs[idx]);
+                tempCandy.id = idx;
+
+                newCandy.transform.SetParent(this.transform);
                 candies[x, y] = newCandy;
             }
         }
     }
-    private Sprite GetRandomSprite()=> prefabs[Random.Range(0, prefabs.Count)];
+    private int GetRandomIndex()=> Random.Range(0, prefabs.Count);
     #endregion
 }
