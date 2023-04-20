@@ -27,4 +27,7 @@ public class Candy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     #endregion
+    #region PUBLIC METHODS
+    public void SetSprite(Sprite sprite)=> spriteRenderer.sprite = sprite;
+    #endregion
 }

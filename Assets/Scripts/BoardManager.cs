@@ -46,10 +46,13 @@ public class BoardManager : MonoBehaviour
                     new Vector3(startX+(offset.x*x), startY+(offset.y*y), 0),
                     Quaternion.identity
                     );
-                newCandy.name = $"Candy[{x}][{y}]";
+                newCandy.name = $"Candy[{x}][{y}]";                
+                Candy tempCandy = newCandy.GetComponent<Candy>();
+                tempCandy.SetSprite(GetRandomSprite());
                 candies[x, y] = newCandy;
             }
         }
     }
+    private Sprite GetRandomSprite()=> prefabs[Random.Range(0, prefabs.Count)];
     #endregion
 }
