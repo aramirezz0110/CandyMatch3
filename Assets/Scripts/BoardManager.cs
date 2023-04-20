@@ -13,6 +13,7 @@ public class BoardManager : MonoBehaviour
 
     private GameObject[,] candies;
     public bool isShifting { get; set; }
+    private Candy selectedCandy;
 
     #region UNITY METHODS
     private void Awake()

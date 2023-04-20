@@ -26,8 +26,40 @@ public class Candy : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
+    private void OnMouseDown()
+    {
+        if (!spriteRenderer.sprite || BoardManager.Instance.isShifting) return;
+
+        if(isSelected)
+            DeselectCandy();
+        else
+        {
+            if(!previousSelected)
+                SelectCandy();
+            else
+            {
+                previousSelected.DeselectCandy();
+                //SelectCandy();
+            }
+        }
+    }
     #endregion
     #region PUBLIC METHODS
     public void SetSprite(Sprite sprite)=> spriteRenderer.sprite = sprite;
+    #endregion
+    #region PRIVATE METHODS
+    private void SelectCandy()
+    {
+        isSelected = true;
+        spriteRenderer.color = selectedColor;
+        previousSelected= this;
+    }
+    private void DeselectCandy()
+    {
+        isSelected= false;
+        spriteRenderer.color = Color.white;
+        previousSelected= null;
+    }
+    
     #endregion
 }
