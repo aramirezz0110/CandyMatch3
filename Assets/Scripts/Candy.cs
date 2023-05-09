@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class Candy : MonoBehaviour
@@ -46,8 +44,8 @@ public class Candy : MonoBehaviour
                     previousSelected.FindAllMatches(); //in case the other causes the destruction
                     previousSelected.DeselectCandy();
                     FindAllMatches(); //in case the current candy causes the destruction
-
-                    
+                    //UI
+                    UIManager.Instance.MoveCounter--;
                 }
                 else
                 {

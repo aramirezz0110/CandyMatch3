@@ -87,6 +87,9 @@ public class BoardManager : MonoBehaviour
         {
             for (int j=0; j<renderes.Count-1; j++)
             {
+                //UI
+                UIManager.Instance.Score += 10;
+
                 yield return new WaitForSeconds(shiftDelay);
                 renderes[j].sprite = renderes[j + 1].sprite;
                 renderes[j + 1].sprite= GetNewCandy(x, size.y-1);
