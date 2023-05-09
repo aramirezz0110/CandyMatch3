@@ -66,7 +66,7 @@ public class BoardManager : MonoBehaviour
         }
     }
     private int GetRandomIndex()=> Random.Range(0, prefabs.Count);
-    private IEnumerator MakeCandiesFall(int x, int yStart, float shiftDelay = 0.05f)
+    private IEnumerator MakeCandiesFall(int x, int yStart, float shiftDelay = 0.02f)
     {
         isShifting= true;
 
@@ -82,19 +82,39 @@ public class BoardManager : MonoBehaviour
             }
             renderes.Add(spriteRenderer);
         }
-        //Fill againg
+        //Fill candies in null positions
         for (int i=0; i<nullCandies; i++)
         {
             for (int j=0; j<renderes.Count-1; j++)
             {
+                yield return new WaitForSeconds(shiftDelay);
                 renderes[j].sprite = renderes[j + 1].sprite;
-                renderes[j + 1].sprite= null;
+                renderes[j + 1].sprite= GetNewCandy(x, size.y-1);
             }
         }
-
-        yield return null;
-
         isShifting= false;
+    }
+    private Sprite GetNewCandy(int x, int y)
+    {
+        List<Sprite> possibleCandies = new List<Sprite>();
+        possibleCandies.AddRange(prefabs);
+        if (x > 0)
+        {
+            possibleCandies.Remove(candies[x-1, y].GetComponent<SpriteRenderer>().sprite);
+        }
+        if (x <size.x-1)
+        {
+            possibleCandies.Remove(candies[x+1, y].GetComponent<SpriteRenderer>().sprite);
+        }
+        if (y > 0)
+        {
+            possibleCandies.Remove(candies[x, y-1].GetComponent<SpriteRenderer>().sprite);
+        }
+        if (y <size.y-1)
+        {
+            possibleCandies.Remove(candies[x, y+1].GetComponent<SpriteRenderer>().sprite);
+        }
+        return possibleCandies[Random.Range(0, possibleCandies.Count)];
     }
     #endregion
 
@@ -110,6 +130,14 @@ public class BoardManager : MonoBehaviour
                     yield return StartCoroutine(MakeCandiesFall(x,y));
                     break;
                 }
+            }
+        }
+        //Check if new candies have coincidences
+        for(int x=0; x<size.x; x++)
+        {
+            for(int y=0; y<size.y; y++)
+            {
+                candies[x, y].GetComponent<Candy>().FindAllMatches();
             }
         }
     }

@@ -47,8 +47,7 @@ public class Candy : MonoBehaviour
                     previousSelected.DeselectCandy();
                     FindAllMatches(); //in case the current candy causes the destruction
 
-                    StopCoroutine(BoardManager.Instance.FindNullCandies());
-                    StartCoroutine(BoardManager.Instance.FindNullCandies());
+                    
                 }
                 else
                 {
@@ -92,6 +91,8 @@ public class Candy : MonoBehaviour
         {
             //disable candy self visuals
             spriteRenderer.sprite = null;
+            StopCoroutine(BoardManager.Instance.FindNullCandies());
+            StartCoroutine(BoardManager.Instance.FindNullCandies());
         }
     }
     #endregion
