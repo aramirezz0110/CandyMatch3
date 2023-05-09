@@ -66,6 +66,53 @@ public class BoardManager : MonoBehaviour
         }
     }
     private int GetRandomIndex()=> Random.Range(0, prefabs.Count);
+    private IEnumerator MakeCandiesFall(int x, int yStart, float shiftDelay = 0.05f)
+    {
+        isShifting= true;
+
+        List<SpriteRenderer> renderes = new List<SpriteRenderer>();
+        int nullCandies = 0;
+        //Figure out how many candies visuals are null
+        for(int y = yStart; y < size.y; y++)
+        {
+            SpriteRenderer spriteRenderer = candies[x, y].GetComponent<SpriteRenderer>();
+            if (!spriteRenderer.sprite)
+            {
+                nullCandies++;
+            }
+            renderes.Add(spriteRenderer);
+        }
+        //Fill againg
+        for (int i=0; i<nullCandies; i++)
+        {
+            for (int j=0; j<renderes.Count-1; j++)
+            {
+                renderes[j].sprite = renderes[j + 1].sprite;
+                renderes[j + 1].sprite= null;
+            }
+        }
+
+        yield return null;
+
+        isShifting= false;
+    }
+    #endregion
+
+    #region PUBLIC METHODS
+    public IEnumerator FindNullCandies()
+    {
+        for (int x=0; x< size.x; x++)
+        {
+            for(int y=0; y< size.y; y++)
+            {
+                if (!candies[x, y].GetComponent<SpriteRenderer>().sprite)
+                {
+                    yield return StartCoroutine(MakeCandiesFall(x,y));
+                    break;
+                }
+            }
+        }
+    }
     
     #endregion
 }
