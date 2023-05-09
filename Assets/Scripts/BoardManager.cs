@@ -13,6 +13,7 @@ public class BoardManager : MonoBehaviour
 
     private GameObject[,] candies;
     public bool isShifting { get; set; }
+    public const int MinCandiesToMatch = 2;//Means min neighbors to match
     private Candy selectedCandy;
 
     #region UNITY METHODS
@@ -65,5 +66,6 @@ public class BoardManager : MonoBehaviour
         }
     }
     private int GetRandomIndex()=> Random.Range(0, prefabs.Count);
+    
     #endregion
 }
