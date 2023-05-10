@@ -45,7 +45,7 @@ public class Candy : MonoBehaviour
                     previousSelected.DeselectCandy();
                     FindAllMatches(); //in case the current candy causes the destruction
                     //UI
-                    UIManager.Instance.MoveCounter--;
+                    UIManager.Instance?.ReduceMoves();
                 }
                 else
                 {

@@ -8,8 +8,10 @@ public class BoardManager : MonoBehaviour
 
     [Header("REFERENCES")]
     public List<Sprite> prefabs = new List<Sprite>();
+    public Transform candyParent;
     public GameObject currentCandy;
     public Vector2Int size;
+
 
     private GameObject[,] candies;
     public bool isShifting { get; set; }
@@ -60,7 +62,7 @@ public class BoardManager : MonoBehaviour
                 tempCandy.SetSprite(prefabs[idx]);
                 tempCandy.id = idx;
 
-                newCandy.transform.SetParent(this.transform);
+                newCandy.transform.SetParent(candyParent);
                 candies[x, y] = newCandy;
             }
         }
@@ -88,7 +90,7 @@ public class BoardManager : MonoBehaviour
             for (int j=0; j<renderes.Count-1; j++)
             {
                 //UI
-                UIManager.Instance.Score += 10;
+                UIManager.Instance.AddScore(10);
 
                 yield return new WaitForSeconds(shiftDelay);
                 renderes[j].sprite = renderes[j + 1].sprite;
