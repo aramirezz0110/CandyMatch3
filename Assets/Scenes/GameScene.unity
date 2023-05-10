@@ -288,12 +288,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: -777051321, guid: 817cb5f2d71e320419c540610faf6179, type: 3}
-  - {fileID: -796809988, guid: 817cb5f2d71e320419c540610faf6179, type: 3}
-  - {fileID: -1082856608, guid: 817cb5f2d71e320419c540610faf6179, type: 3}
-  - {fileID: 936828866, guid: 817cb5f2d71e320419c540610faf6179, type: 3}
-  - {fileID: -1610754983, guid: 817cb5f2d71e320419c540610faf6179, type: 3}
-  - {fileID: -1336139510, guid: 817cb5f2d71e320419c540610faf6179, type: 3}
+  - {fileID: 21300000, guid: b35d736231b2e43b093a0ee7d5581ac2, type: 3}
+  - {fileID: 21300000, guid: 190566084fa2d4397a67618bafee3137, type: 3}
+  - {fileID: 21300000, guid: 36d61e19c4c0944c8a89555bb07814e4, type: 3}
+  - {fileID: 21300000, guid: de53037ee55cf4a26b9e4a0d0e0b3492, type: 3}
+  - {fileID: 21300000, guid: fb53e9b86fb2c4030810ef670f7cd47e, type: 3}
+  - {fileID: 21300000, guid: 92efa643b105f40bf9d382fb606f7e82, type: 3}
   candyParent: {fileID: 1395291054}
   currentCandy: {fileID: 5930695983780517343, guid: 62831d545a4bf1a4e989f1d2468c39f8, type: 3}
   size: {x: 8, y: 12}
@@ -2567,7 +2567,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 977965148, guid: a8238b0c8694aa243a29e6b61adcb02a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 423e91e07935d9640992831527af82bd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
